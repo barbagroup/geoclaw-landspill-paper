@@ -1,0 +1,83 @@
+%! TEX program = xelatex
+
+% loading packages; we rely on elsevier's template to load most packages
+\documentclass{cas-sc} % elsevier's single-column class; it also loads many packages for us
+\usepackage[utf8]{inputenc} % not required in newer compiler, but just in case
+\usepackage[backend=biber, style=apa]{biblatex} % bibliography
+\usepackage{setspace} % makes life easier when changing line spacing ...
+
+% the journal requires manuscripts to use 1.5 line spacing
+\onehalfspacing
+
+% a hack that disables the email/url graphic logo prefix
+\ExplSyntaxOn
+\keys_set:nn {stm/mktitle} {nologo}
+\ExplSyntaxOff
+
+% a hack to replace natbib with biblatex when using cas-dc and cas-sc classes
+\makeatletter
+\newlength{\bibsep}{\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\makeatother
+
+% bibliography configuration (for biblatex)
+\ExecuteBibliographyOptions{sorting=none, sortcites=true, sortsets=true}
+\ExecuteBibliographyOptions{dashed=false, hyperref=true, isbn=false, url=false, doi=true}
+\urlstyle{same} % fix the font of url and doi in bibliography
+\addbibresource{reference.bib} % use only one single bib file
+
+% prefix section number to equation indices
+\numberwithin{equation}{section}
+
+% default figure search path
+\graphicspath{{../figs/}}
+
+% priority of the formats of figures
+\DeclareGraphicsExtensions{.pdf,.png}
+
+% custom commands; aliases
+\newrobustcmd*{\geoclaw}{\texttt{GeoClaw}\xspace} % monospace text for GeoClaw
+\newrobustcmd*{\geoclawlandspill}{\texttt{GeoClaw-landspill}\xspace} % monospace text for GeoClaw-landspill
+\newrobustcmd*{\vectorsym}[1]{\symbfit{#1}} % vector symbols
+\renewrobustcmd*{\vec}{\vectorsym} % use vector symbols instead of arrow for vec
+\newrobustcmd*{\mat}[1]{\symbfit{#1}} % matrix symbols
+\newrobustcmd*{\diff}{\mathop{}\!\symup{d}} % ISO-style upright ordinary differentiation
+\newrobustcmd*{\pd}[3][1]{\ifstrequal{#1}{1}{\frac{\partial #2}{\partial #3}}{\frac{\partial^{#1} #2}{\partial #3^{#1}}}} % partial derivative
+
+% document body
+\begin{document}
+
+% front matter
+\input{frontmatter.tex}
+\maketitle
+
+% sections
+\section{Introduction}
+
+\section{Methods}
+
+\section{Results: validations and showcases}
+\subsection{Validation: silicone oil on an inclined glass plate}
+\subsection{Showcase: Maya crude oil and gasoline above flat terrain}
+\subsection{showcase: Maya crude oil flow in contact with inland water bodies}
+\subsection{Showcase: Maya crude oil in drainage terrain}
+
+\section{Discussion}
+
+\section{Conclusions}
+
+\section*{Software availability}
+
+\section*{Acknowledgment}
+
+
+% bibliography using biblatex
+\sloppy % allow latex to adjust space size so hyphenated words can be fewer
+\printbibliography
+\fussy % revert the behavior of \sloppy
+
+%% bibliography using natbib; apa style
+%\bibliographystyle{apalike}
+%\bibliography{reference}
+
+\end{document}
+% vim:ft=tex
