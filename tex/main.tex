@@ -1,10 +1,13 @@
 %! TEX program = xelatex
 
 % loading packages; we rely on elsevier's template to load most packages
-\documentclass{cas-sc} % elsevier's single-column class; it also loads many packages for us
+\documentclass{cas-dc} % elsevier's double-column class; it also loads many packages for us
 \usepackage[utf8]{inputenc} % not required in newer compiler, but just in case
+\usepackage[T1]{fontenc} % for 8bit font encoding
 \usepackage[backend=biber, style=apa]{biblatex} % bibliography
 \usepackage{setspace} % makes life easier when changing line spacing ...
+\usepackage{gensymb}
+\usepackage{threeparttable}
 
 % the journal requires manuscripts to use 1.5 line spacing
 \onehalfspacing
@@ -55,11 +58,7 @@
 
 \section{Methods}
 
-\section{Results: validations and showcases}
-\subsection{Validation: silicone oil on an inclined glass plate}
-\subsection{Showcase: Maya crude oil and gasoline above flat terrain}
-\subsection{showcase: Maya crude oil flow in contact with inland water bodies}
-\subsection{Showcase: Maya crude oil in drainage terrain}
+\input{results.tex}
 
 \section{Discussion}
 
