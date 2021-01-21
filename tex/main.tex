@@ -40,10 +40,10 @@
 % custom commands; aliases
 \newrobustcmd*{\geoclaw}{\texttt{GeoClaw}\xspace} % monospace text for GeoClaw
 \newrobustcmd*{\geoclawlandspill}{\texttt{GeoClaw-landspill}\xspace} % monospace text for GeoClaw-landspill
-\newrobustcmd*{\vectorsym}[1]{\symbfit{#1}} % vector symbols
+\newrobustcmd*{\vectorsym}[1]{\mathbfit{#1}} % vector symbols
 \renewrobustcmd*{\vec}{\vectorsym} % use vector symbols instead of arrow for vec
-\newrobustcmd*{\mat}[1]{\symbfit{#1}} % matrix symbols
-\newrobustcmd*{\diff}{\mathop{}\!\symup{d}} % ISO-style upright ordinary differentiation
+\newrobustcmd*{\mat}[1]{\mathbfit{#1}} % matrix symbols
+\newrobustcmd*{\diff}{\mathop{}\!\mathup{d}} % ISO-style upright ordinary differentiation
 \newrobustcmd*{\pd}[3][1]{\ifstrequal{#1}{1}{\frac{\partial #2}{\partial #3}}{\frac{\partial^{#1} #2}{\partial #3^{#1}}}} % partial derivative
 
 % document body
@@ -56,8 +56,7 @@
 % sections
 \section{Introduction}
 
-\section{Methods}
-
+\input{models_and_numerical_methods.tex}
 \input{results.tex}
 
 \section{Discussion}
