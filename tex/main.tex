@@ -8,9 +8,10 @@
 \usepackage{setspace} % makes life easier when changing line spacing ...
 \usepackage{gensymb}
 \usepackage{threeparttable}
+\usepackage{mathtools}
 
 % the journal requires manuscripts to use 1.5 line spacing
-\onehalfspacing
+%\onehalfspacing
 
 % a hack that disables the email/url graphic logo prefix
 \ExplSyntaxOn
@@ -54,14 +55,29 @@
 \maketitle
 
 % sections
-\section{Introduction}
+\section{Introduction} \label{sec:introduction}
+    \input{introduction.tex}
 
-\input{models_and_numerical_methods.tex}
-\input{results.tex}
+\section{Governing equations and models} \label{sec:methods}
+    \input{full_shallow_water_equations.tex}
+    \input{point_source.tex}
+    \input{evaporation.tex}
+    \input{waterbodies.tex}
+    \input{darcy_weisbach.tex}
+    \input{temperature_viscosity.tex}
 
-\section{Discussion}
+\section{Results: validations and showcases} \label{sec:results}
+    \input{results.tex}
 
-\section{Conclusions}
+\section{Discussion} \label{sec:discussion}
+
+Among many different models, those that calculate friction coefficients with one single formula are more suitable than others in terms of numerical simulations.
+Pipe and open-channel flows usually have three major flow regimes: 1) laminar flow, 2) smooth turbulent flow, in which surface roughness has no influence, and 3) fully-rough turbulent flow, in which surface roughness plays a key role.
+Two transition regimes exist between laminar and smooth turbulent flows and between smooth fully-rough turbulent flows.
+
+All friction models are more or less depending on experimental data fitted onto 1D closed-pipe experiments.
+
+\section{Conclusions} \label{sec:conclusion}
 
 \section*{Software availability}
 

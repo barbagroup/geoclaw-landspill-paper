@@ -1,0 +1,21 @@
+%! TEX root = main.tex
+
+In the US, between 2010 and 2017, an average of 388 hazardous liquid pipeline accidents happened per year.
+50\% of accidents contaminate soil, and 41\% of accidents affect areas with high consequences in either ecology or economy.
+Moreover, 85\% on average of the released oil was not recovered and kept damaging the environment (\cite{belvederesi_statistical_2018}).
+From the perspective of risk management, while pipelines are unavoidable in modern days, it is necessary to understand how a pipeline may impact the environment if any accidental release happens.
+\geoclawlandspill serves this purpose.
+\geoclawlandspill provides a free and open-source simulation tool to researchers investigating the danger, risk, and loss posted by potential pipeline accidents.
+
+To our knowledge, \geoclawlandspill is the only open-source high-fidelity flow simulator for oil pipeline rupture events.
+High fidelity means the results provide more details and accuracy because of high-resolution digital elevation data, fine spatial discretization, and full shallow-water equations.
+Commercial products with a similar capability to \geoclawlandspill are available \cite{Zuczek2008, RPSGroup, Hydronia, Gin2012}.
+Other non-commercial software more or less serving a similar purpose usually relies on simplified models, such as 1D open-channel models, diffusive wave approximation, gravity current models, and gradient-based route selection models \cite{Hussein2002, Simmons2003, Ronnie2004, farrar_gis_2005, Guo2006, Su2017}.
+Moreover, these non-commercial codes are either non-exist in modern days or are not open-source.
+
+Another value of \geoclawlandspill is to provide a platform for scholars who study oil flow modeling to implement and test their models.
+As the main flow solver is under the BSD 3-Clause License, scholars can add their models to *geoclaw-landspill* freely.
+
+SWE has been used to model overland flow problems such as rainfall-runoff problems, dam-break problems, tsunami simulations, and river flow simulations.
+One major difference between oil overland flow and the aforementioned applications lies in the rheological properties of the working fluids.
+

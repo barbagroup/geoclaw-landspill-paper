@@ -1,0 +1,46 @@
+%! TEX root = main.tex
+\subsection{Full shallow-water equations}
+
+We model the oil overland flow with the full shallow-water equations (SWE), which are derived from depth-averaged Navier-Stokes equations (\cite{vreugdenhil_numerical_1994}):
+\begin{equation}\label{eq:swe}
+    \pd{}{t}\vec{q} + \pd{}{x}\vec{f}(\vec{q}) + \pd{}{y}\vec{g}(\vec{q}) = \vec{\psi}(\vec{q}, x, y, t)
+\end{equation}
+where $\vec{q} = \begin{bmatrix} h \\ hu \\ hv \end{bmatrix}$,
+$\vec{f}(\vec{q}) = \begin{bmatrix} hu \\ hu^2 + \frac{1}{2}gh^2 \\ huv \end{bmatrix}$,
+$\vec{g}(\vec{q}) = \begin{bmatrix} hv \\ huv \\ hv^2 + \frac{1}{2}gh^2 \end{bmatrix}$, and
+$\vec{\psi}(\vec{q}, x, y, t) = \begin{bmatrix} R-I \\ -ghB_x - F_x \\ -ghB_y - F_y \end{bmatrix}$.
+Table \ref{table:notation} describes the meaning of each symbol.
+
+\begin{table}
+    \caption{Notation}
+    \begin{tabular*}{\linewidth}[t]{p{0.11\linewidth}p{0.06\linewidth}p{0.7\linewidth}}
+        \toprule
+        Symbol & Unit & Description \\
+        \midrule
+        $x$, $y$ & $m$ & Spatial coordinates. \\
+        $t$ & $s$ & Temporal coordinates. \\
+        $g$ & $m/s^2$ & Gravitational acceleration. \\
+        $h$ & $m$ & Fluid depth. \\
+        $u$, $v$ & $m/s$ & Depth-averaged velocity in $x$- and $y$-directions. \\
+        $R$, $I$ & $m/s$ & Mass source and sink. \\
+        $B_x$, $B_y$ & none & Gradient components of topography in $x$- and $y$-directions. \\
+        $F_x$, $F_y$ & $m^2/s^2$ & Bottom friction components in $x$- and $y$-directions. \\
+        \bottomrule
+    \end{tabular*}
+    \label{table:notation}
+\end{table}
+
+Shallow-water equations are derived under the assumption of incompressible flow and Newtonian fluids. 
+Though not all hydrocarbon products are Newtonian fluids, crude oils normally are. (\cite{Ronningsen2012, bryan_viscosity_2002}) 
+In this work, our main focus is the crude oil pipelines. 
+
+Equation \ref{eq:swe} is also called the dynamic shallow-water equations because it considers the effects of local acceleration, inertia, pressure, gravity, and viscosity.
+While many variants and simplified shallow-water equations exist, we argue that the full shallow-water equations are necessary to describe the overland flow in pipeline incidents.
+The gravity effect takes place everywhere because of topographical changes.
+The pressure effect also applies to everywhere as long as the water surface elevation is not horizontal.
+The inertia is at least significant at the vicinity of a pipeline rupture point and at the beginning of a rupture incident: the high pressure difference between inside and outside a pipe generates high flow speed at a rupture point.
+Lastly, the viscosity effect is lumped into the bottom friction and is at least significant to flow front and after pipeline valves are shut down, causing flow speed to be slower.
+
+George and Berger (\cite{George2011, Berger2011}) provide detailed descriptions of the numerical methods, especially the adaptive-mesh-refinement (AMR) algorithms, used in \geoclaw.
+Built on top of \geoclaw, our work focuses on adding models for mass sources ($R$), mass sinks ($I$), bottom friction ($F_x$ and $F_y$), and temperature-dependent viscosity.
+Our work also adds features that helps practical use cases in real-world analysis, such as standard CF-compliant NetCDF I/O, Esri ArcGIS integration, and cloud computing integration with Microsoft Azure.
